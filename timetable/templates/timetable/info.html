@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load static %}
+    <title>팀 {{ schedule.team_name }} 정보</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'timetable/style.css' %}?ver13" />
+    <link rel="stylesheet" type="text/css" href="http://api.typolink.co.kr/css?family=RixMGo+L:400|RixMGo+M:400|RixMGo+B:400|RixMGo+EB:400" />
+  </head>
+  <body>
+    <center>
+      <h1 style="text-align: center;">{{ title }}</h1>
+      <table class="form-table" style="margin-left: 70px;">
+        <tbody>
+          <tr>
+            <th>
+              <h3 style="text-align: center;">팀 이름</h3>
+              <h3 style="text-align: center;">날짜</h3>
+              <h3 style="text-align: center;">시작 시간</h3>
+              <h3 style="text-align: center;">합주 시간</h3>
+            </th>
+            <td style="padding-top: 0px;">
+              <div class="info-cell">{{ schedule.team_name }}</div>
+              <div class="info-cell">{{ schedule.start_time|date }}</div>
+              <div class="info-cell">{{ schedule.start_time|time }}</div>
+              <div class="info-cell">{{ hour }}:{{ minute }}</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </center>
+    <center>
+      <div class="info-button" align="center">
+        <form action="{% url 'timetable:modify' schedule.id %}" method="post">
+          {% csrf_token %}
+          <input class="button" type="submit" name="modify" value="✎ 수정"/>
+        </form>
+        <form action="{% url 'timetable:delete' schedule.id %}" method="post">
+          {% csrf_token %}
+          <input class="button" type="submit" name="delete" value="⌦ 삭제" onclick="if (! confirm('{{ schedule.team_name }} 합주를 삭제하시겠습니까?')) { return false; }"/>
+        </form>
+        <form action="{% url 'timetable:index' %}" method="post">
+          {% csrf_token %}
+          <input class="button" type="submit" name="cancel" value="↩ 돌아가기" style="width: 100px;"/>
+        </form>
+      </div>
+    </center>
+  </body>
+</html>

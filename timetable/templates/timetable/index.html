@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'timetable/style.css' %}?ver17" />
+    <link rel="stylesheet" type="text/css" href="http://api.typolink.co.kr/css?family=RixMGo+L:400|RixMGo+M:400|RixMGo+B:400|RixMGo+EB:400" />
+    <title>아망 합주 시간표</title>
+  </head>
+  <body style="margin: 0px;">
+    <section class="title">
+      <p>Amang Scheduler</p>
+    </section>
+    {% if stack_list %}
+      <table style="max-width: 100%; margin: auto; margin-bottom: 40px;">
+        <tr class="table_header">
+          <th><p style="vertical-align: middle;">이름</p></th>
+          <th><p style="vertical-align: middle;">스택</p></th>
+        </tr>
+        {% for person in stack_list %}
+          <tr class="table-context-rank">
+            <td style="min-width: 80px; text-align: center; {% if person.value > 2 %}color:rgb(196,48,30); font-weight: bold;{% endif %}">{{ person.name }}</td>
+            <td style="min-width: 50px; text-align: center; padding-right: 5px; {% if person.value > 2 %}color:rgb(196,48,30); font-weight: bold;{% endif %}">{{ person.value }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p style="text-align: center;">스택이 쌓인 사람이 없네요!</p>
+    {% endif %}
+    {% if schedule_list %}
+      <table style="max-width: 100%; margin: auto;">
+        <tr class="table_header">
+          <th><p style="vertical-align: middle;">팀명</p></th>
+          <th><p style="vertical-align: middle;">날짜</p></th>
+          <th><p style="vertical-align: middle;">시간</p></th>
+        </tr>
+        {% for time in ordered_schedule %}
+          <tr class="table-context">
+            <td style="min-width: 80px;">{{ time.team_name }}</td>
+            <td style="min-width: 150px;">{{ time.start_time|date }}</td>
+            <td style="min-width: 100px;">{{ time.start_time|time }} ~ {{ time.end_time|time }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p style="text-align: center;">이번 주 스케줄이 없습니다.</p>
+    {% endif %}
+    <div class="container">
+      <div class="tab-menu">
+        <form action="{% url 'timetable:new' %}" method="post">
+          {% csrf_token %}
+          <input class="newbutton" type="submit" name="new" id="makenew" value="♪">
+        </form>
+        <ul class="menu-bar">
+          <form action="{% url 'timetable:changeweek' %}" method="post">
+            {% csrf_token %}
+            <li class="button"><input type="submit" name="prev" id="prevweek" value="< 이전 주"></li>
+            <li><h3 align="center" style="margin: 0; font-size: 22px; color: rgb(35,35,35);">{{ year }}년 {{ now|date:"m" }}월</h3></li>
+            <li class="button"><input type="submit" name="next" id="nextweek" value="다음 주 >"></li>
+          </form>
+        </ul>
+      </div>
+      <div class="wrap">
+        <div class="thead">
+          <table align="center" class="thead">
+            <tbody>
+              <tr>
+                <th style="width: 60px;"></th>
+                  {% for day,days in weeklist %}
+                    <td>{{ days }}<br/>{{ day|date:"n.j" }}</td>
+                  {% endfor %}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tbody" overflow="auto">
+          <table align="center" class="tbody">
+            <tbody>
+              <tr>
+                <th>
+                  <div class="hours">
+                    <div class="hour"><p>09:00</p></div>
+                    <div class="hour"><p>09:30</p></div>
+                    <div class="hour"><p>10:00</p></div>
+                    <div class="hour"><p>10:30</p></div>
+                    <div class="hour"><p>11:00</p></div>
+                    <div class="hour"><p>11:30</p></div>
+                    <div class="hour"><p>12:00</p></div>
+                    <div class="hour"><p>12:30</p></div>
+                    <div class="hour"><p>13:00</p></div>
+                    <div class="hour"><p>13:30</p></div>
+                    <div class="hour"><p>14:00</p></div>
+                    <div class="hour"><p>14:30</p></div>
+                    <div class="hour"><p>15:00</p></div>
+                    <div class="hour"><p>15:30</p></div>
+                    <div class="hour"><p>16:00</p></div>
+                    <div class="hour"><p>16:30</p></div>
+                    <div class="hour"><p>17:00</p></div>
+                    <div class="hour"><p>17:30</p></div>
+                    <div class="hour"><p>18:00</p></div>
+                    <div class="hour"><p>18:30</p></div>
+                    <div class="hour"><p>19:00</p></div>
+                    <div class="hour"><p>19:30</p></div>
+                    <div class="hour"><p>20:00</p></div>
+                    <div class="hour"><p>20:30</p></div>
+                    <div class="hour"><p>21:00</p></div>
+                    <div class="hour"><p>21:30</p></div>
+                    <div class="hour"><p>22:00</p></div>
+                    <div class="hour"><p>22:30</p></div>
+                    <div class="hour"><p>23:00</p></div>
+                    <div class="hour"><p>23:30</p></div>
+                    <div class="hour"><p>24:00</p></div>
+                    <div class="hour"><p>24:30</p></div>
+                  </div>
+                </th>
+                {% for cnt,today in countlist %}
+                  <td>
+                    <div class="items" style="position: absolute;">
+                      {% for schedule,weekday,topval,hval,color in schedule_list %}
+                        {% if weekday == cnt %}
+                          <div class="schedule {{ color }}" onclick="location.href='{% url 'timetable:info' schedule.id %}';" style="top:{{ topval }}px; height:{{ hval }}px;">
+                            <p style="width: 40px; margin: auto; margin-top: 10px;">{{ schedule }}</p>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                    <div class="column" {% if today %}style="background-color: rgb(235,235,235)"{% endif %}>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                      <div class="cell"></div>
+                    </div>
+                  </td>
+                {% endfor %}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- <form action="{{}% url 'timetable:report' %}" method=post>
+      {% csrf_token %}
+      <input type="button" name="report" value="버그 문의"/>
+    </form> -->
+  <div class="container">
+    <center>
+      <img class="logo" width="100px" alt="Amang" src="{% static 'timetable/img/logo.png' %}">
+    </center><br/>
+    <center>
+      <img class="link" width="40px" alt="Amang Facebook Page" src="{% static 'timetable/img/facebook.png' %}" onclick="location.href='https://www.facebook.com/groups/135672356493726/?fref=ts';">
+      <img class="link" width="38px" alt="Amang Youtube Channel" src="{% static 'timetable/img/youtube.png' %}" onclick="location.href='https://www.youtube.com/channel/UCAJ5YYIMULgTBhXu8wDmr8w';">
+    </center>
+  </div>
+  <body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load static %}
+    <title>새 합주 일정</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'timetable/style.css' %}?ver14" />
+    <link rel="stylesheet" type="text/css" href="http://api.typolink.co.kr/css?family=RixMGo+L:400|RixMGo+M:400|RixMGo+B:400|RixMGo+EB:400" />
+  </head>
+  <body style="margin: 0px;">
+    {% if messages %}
+    <section class="error-box">
+      <ul class="messages" style="padding: 0px;">
+          {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+              {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+              {{ message }}
+          </li>
+          {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+    <h1 style="text-align: center;">{{ title }}</h1>
+
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+    <form action="{% url 'timetable:add' %}" method="post">
+      {% csrf_token %}
+      <center>
+        <table class="form-table" style="margin-left: 70px;">
+          <tbody>
+            <tr>
+              <th>
+                <h3 style="text-align: center;">팀 이름</h3>
+                <h3 style="text-align: center;">날짜</h3>
+                <h3 style="text-align: center;">시작 시간</h3>
+                <h3 style="text-align: center;">합주 시간</h3>
+              </th>
+              <td style="padding-top: 4px;">
+                <div class="form-cell"><input type="text" name="team" id="tname" {% if team %}value="{{ team }}"{% endif %}/></div>
+                <div class="form-cell"><input type="date" name="date" id="sdate" {% if date %}value="{{ date }}"{% endif %}/></div>
+                {% if not date %}
+                <script type="text/javascript">
+                  var date = new Date();
+
+                  var day = date.getDate();
+                  var month = date.getMonth() + 1;
+                  var year = date.getFullYear();
+
+                  if (month < 10) month = "0" + month;
+                  if (day < 10) day = "0" + day;
+
+                  var today = year + "-" + month + "-" + day;
+                  document.getElementById("sdate").value = today;
+                </script>
+                {% endif %}
+                <div class="form-cell"><input type="time" name="time" id="stime" {% if start %}value="{{ start }}"{% endif %}/></div>
+                <div class="form-cell"><select name="interval" size="1">
+                  <option value="t30">00:30</option>
+                  <option value="t60" selected>01:00</option>
+                  <option value="t90">01:30</option>
+                  <option value="t120">02:00</option>
+                  {% if interval %}<option value="{{ interval }}" selected>{{ timeop }}</option>{% endif %}
+                </select></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <input class="button" type="submit" name="{{ button_name }}" value="{{ button_value }}"/>
+        <input class="button" type="submit" name="cancel" value="✗ 취소"/>
+      </center>
+    </form>
+  </body>
+</html>
