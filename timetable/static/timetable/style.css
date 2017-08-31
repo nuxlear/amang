@@ -291,6 +291,9 @@ img.link{
     min-width: 50px;
     width: 10vw;
   }
+  table.thead th{
+    width:13vw;
+  }
   input.newbutton{
     min-width: 200px;
     width: 40vw;
