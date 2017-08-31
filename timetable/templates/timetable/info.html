@@ -40,7 +40,7 @@
         </form>
         <form action="{% url 'timetable:index' %}" method="post">
           {% csrf_token %}
-          <input class="button" type="submit" name="cancel" value="↩ 돌아가기" style="width: 100px;"/>
+          <input class="button" type="submit" name="cancel" value="↩ 돌아가기" style="min-width: 100px;"/>
         </form>
       </div>
     </center>

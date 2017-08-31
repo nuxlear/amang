@@ -117,7 +117,7 @@
                     <div class="items" style="position: absolute;">
                       {% for schedule,weekday,topval,hval,color in schedule_list %}
                         {% if weekday == cnt %}
-                          <div class="schedule {{ color }}" onclick="location.href='{% url 'timetable:info' schedule.id %}';" style="top:{{ topval.1 }}vh; height:{{ hval.1 }}vh;">
+                          <div class="schedule {{ color }}" onclick="location.href='{% url 'timetable:info' schedule.id %}';" style="top:{{ topval.1 }}rem; height:{{ hval.1 }}rem;">
                             <p style="min-width: 40px; margin: auto; margin-top: 10px;">{{ schedule }}</p>
                           </div>
                         {% endif %}
