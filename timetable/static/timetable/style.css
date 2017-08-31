@@ -280,7 +280,7 @@ img.link{
     width: 12vw;
     min-height: 20px;
     height: 6vh;
-    font-size: 3vh;
+    font-size: 0.7rem;
   }
   div.cell{
     min-width: 49px;
@@ -291,65 +291,106 @@ img.link{
   div.schedule{
     min-width: 49px;
     width: 10vw;
+    min-height: 40px;
+    height: 6vh;
+  }
+  div.schedule p{
+    font-size: 4vh;
   }
   div.form-cell{
-    margin: 3vh;
-    margin-left: 8vh;
+    margin: 1rem;
+    margin-left: 3rem;
+    margin-top: 0;
     min-height: 30px;
-    height: 9vh;
+    height: 6.8vh;
   }
   div.form-cell input,select{
     min-height: 22px;
-    height: 8vh;
-    font-size: 6vh;
+    height: 5vh;
+    margin: 0.9vh auto;
+    font-size: 0.7rem;
+  }
+  div.info-cell{
+    margin: 1rem;
+    margin-left: 3rem;
+    font-size: 1.4rem;
+    height: 6.8vh;
   }
   section.title{
     min-height: 80px;
-    height: 25vh;
+    height: 5rem;
   }
   section.title p{
     vertical-align: middle;
     text-align: center;
     margin: 20px 0px;
-    font-size: 12vh;
+    font-size: 2.4rem;
     font-weight: bold;
     width: 100vw;
   }
   section.error-box{
     min-height: 30px;
-    height: 20vh;
+    height: 10vh;
+  }
+  section.error-box li{
+    font-size: 1.6rem;
+  }
+  tr.table_header p{
+    margin: 5px auto;
+    padding-top: 2px;
+  }
+  tr.table-context td{
+    min-height: 20px;
+    height: 3vh;
+    font-size: 0.8rem;
+  }
+  tr.table-context-rank td{
+    min-height: 20px;
+    height: 3vh;
+    font-size: 0.8rem;
   }
   table.thead td{
     min-width: 50px;
     width: 10vw;
     min-height: 40px;
     height: 10vh;
-    font-size: 3vh;
+    font-size: 0.7rem;
   }
   table.thead th{
     width:13vw;
+  }
+  table.form-table{
+    margin-left: 3vh !important;
+  }
+  table.form-table th{
+    font-size: 1.4rem;
+  }
+  table.form-table h3{
+    width: 8rem;
+    height: 6.8vh;
+    margin: 1rem auto;
   }
   ul.menu-bar li{
     margin: 0 5vw;
     float: left;
   }
   ul.menu-bar li h3{
-    font-size: 8vh !important;
+    font-size: 1.7rem !important;
   }
   li.button input{
-    font-size: 4vh;
+    font-size: 0.8rem;
   }
   input.newbutton{
     min-width: 200px;
     width: 40vw;
     height: 10vh;
-    font-size: 6vh;
+    font-size: 1.4rem;
   }
   input.button{
     min-width: 80px;
     width: 14vw;
     min-height: 25px;
-    height: 10vh;
-    font-size: 5vh;
+    height: 8vh;
+    font-size: 1rem;
   }
 }

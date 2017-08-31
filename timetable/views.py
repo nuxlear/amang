@@ -43,8 +43,10 @@ def index(request):
     for schedule in week_schedule:
         schedule_time=datetime.datetime.min+(schedule.end_time-schedule.start_time)
         top=schedule.start_time.hour*42+schedule.start_time.minute//3*2-1+schedule.start_time.minute//30
+        toph=schedule.start_time.hour*12+schedule.start_time.minute*0.22+(schedule.start_time.hour*3)/5
         height=schedule_time.hour*42+schedule_time.minute//3*2
-        schedule_list.append((schedule, schedule.start_time.weekday(), top, height, colorset[i]))
+        heighth=schedule_time.hour*12+schedule_time.minute//5+(0.5*schedule_time.hour)
+        schedule_list.append((schedule, schedule.start_time.weekday(), (top, toph), (height, heighth), colorset[i]))
         i=(i+1)%12
     stack_list=Stack.objects.all().order_by('-value')
     context={
@@ -105,7 +107,12 @@ def add(request):
     interval = request.POST.get('interval', False)
     if not( team and date and start and interval):
         messages.info(request, '모든 항목을 작성해 주세요.')
-        return render(request, "timetable/new.html")
+        context={
+            "title":"새 합주",
+            "button_value":"✓ 확인",
+            "button_name":"add",
+        }
+        return render(request, "timetable/new.html", context)
     hour=0
     minute=0
     if interval in ['t30','t90']:
@@ -123,7 +130,10 @@ def add(request):
         "date":date,
         "start":start,
         "interval":interval,
-        "timeop":"{:02}:{:02}".format(hour,minute)
+        "timeop":"{:02}:{:02}".format(hour,minute),
+        "title":"새 합주",
+        "button_value":"✓ 확인",
+        "button_name":"add",
     }
     if request.POST.get('add', False):
         schedule = Schedule(team_name=team, start_time=stime, end_time=etime)
