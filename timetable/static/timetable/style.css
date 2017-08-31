@@ -1,5 +1,6 @@
 *{
-  font-family: 'RixSGo M';
+  font-family: 'RixSGo M' sans-serif;
+  -webkit-font-family: 'RixSGo M' sans-serif;
 }
 div{
   display: block;
@@ -83,6 +84,7 @@ section.title{
   margin-bottom: 40px;
   padding: 10px 0px;
   background: linear-gradient(120deg, rgb(168,168,168), rgb(108,108,108));
+  background: -webkit-linear-gradient(120deg, rgb(168,168,168), rgb(108,108,108));
   color: #fff;
   min-height: 80px;
 }
@@ -92,6 +94,7 @@ section.title p{
   margin: 20px 0px;
   font-size: 40px;
   font-weight: bold;
+  width: 100vw;
 }
 section.error-box{
   animation-duration: 2s;
@@ -230,12 +233,16 @@ input.newbutton{
   margin: 0px 0px 20px 0px;
   border: 1px none #aaa;
   border-radius: 3px;
+  -webkit-border: 1px none #aaa;
+  -webkit-border-radius: 3px;
   width: 200px;
   font-size: 24px;
   font-weight: bold;
   text-shadow: 0 0 10px #444;
+  -webkit-text-shadow: 0 0 10px #444;
   color: #fff;
   background-color: rgb(169,169,169);
+  -webkit-background-color: rgb(169,169,169);
 }
 input.button{
   margin: 0px 0px 20px 0px;
@@ -243,13 +250,17 @@ input.button{
   padding-top: 5px;
   border: 1px none #aaa;
   border-radius: 3px;
+  -webkit-border: 1px none #aaa;
+  -webkit-border-radius: 3px;
   width: 80px;
   height: 25px;
   font-size: 14px;
   font-weight: normal;
   text-shadow: 0 0 10px #444;
+  -webkit-text-shadow: 0 0 10px #444;
   color: #fff;
   background-color: rgb(169,169,169);
+  -webkit-background-color: rgb(169,169,169);
 }
 img.logo{
   margin: 10px auto;
@@ -258,4 +269,34 @@ img.logo{
 img.link{
   margin: 0 auto;
   margin-bottom: 30px;
+}
+@media screen and (max-width:990px){
+  div.hour{
+    min-width: 62px;
+    width: 12vw;
+  }
+  div.cell{
+    min-width: 49px;
+    width: 10vw;
+  }
+  div.schedule{
+    min-width: 49px;
+    width: 10vw;
+  }
+  ul.menu-bar li{
+    margin: 0 8vw;
+    float: left;
+  }
+  table.thead td{
+    min-width: 50px;
+    width: 10vw;
+  }
+  input.newbutton{
+    min-width: 200px;
+    width: 40vw;
+  }
+  input.button{
+    min-width: 80px;
+    width: 14vw;
+  }
 }
