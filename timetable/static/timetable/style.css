@@ -271,35 +271,85 @@ img.link{
   margin-bottom: 30px;
 }
 @media screen and (max-width:990px){
+  html{
+    font-size: 4vw;
+  }
   div.hour{
+    border-width: 2px;
     min-width: 62px;
     width: 12vw;
+    min-height: 20px;
+    height: 6vh;
+    font-size: 3vh;
   }
   div.cell{
     min-width: 49px;
     width: 10vw;
+    min-height: 19px;
+    height: 6vh;
   }
   div.schedule{
     min-width: 49px;
     width: 10vw;
   }
-  ul.menu-bar li{
-    margin: 0 8vw;
-    float: left;
+  div.form-cell{
+    margin: 3vh;
+    margin-left: 8vh;
+    min-height: 30px;
+    height: 9vh;
+  }
+  div.form-cell input,select{
+    min-height: 22px;
+    height: 8vh;
+    font-size: 6vh;
+  }
+  section.title{
+    min-height: 80px;
+    height: 25vh;
+  }
+  section.title p{
+    vertical-align: middle;
+    text-align: center;
+    margin: 20px 0px;
+    font-size: 12vh;
+    font-weight: bold;
+    width: 100vw;
+  }
+  section.error-box{
+    min-height: 30px;
+    height: 20vh;
   }
   table.thead td{
     min-width: 50px;
     width: 10vw;
+    min-height: 40px;
+    height: 10vh;
+    font-size: 3vh;
   }
   table.thead th{
     width:13vw;
   }
+  ul.menu-bar li{
+    margin: 0 5vw;
+    float: left;
+  }
+  ul.menu-bar li h3{
+    font-size: 8vh !important;
+  }
+  li.button input{
+    font-size: 4vh;
+  }
   input.newbutton{
     min-width: 200px;
     width: 40vw;
+    height: 10vh;
+    font-size: 6vh;
   }
   input.button{
     min-width: 80px;
     width: 14vw;
+    min-height: 25px;
+    height: 10vh;
+    font-size: 5vh;
   }
 }
