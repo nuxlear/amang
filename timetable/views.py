@@ -43,7 +43,7 @@ def index(request):
     for schedule in week_schedule:
         schedule_time=datetime.datetime.min+(schedule.end_time-schedule.start_time)
         top=schedule.start_time.hour*42+schedule.start_time.minute//3*2-1+schedule.start_time.minute//30
-        toph=schedule.start_time.hour*2.57+schedule.start_time.minute/30*1.3
+        toph=schedule.start_time.hour*2.6+schedule.start_time.minute/30*1.3
         height=schedule_time.hour*42+schedule_time.minute//3*2
         heighth=schedule_time.hour*2.5+schedule_time.minute/15*1.2
         schedule_list.append((schedule, schedule.start_time.weekday(), (top, toph), (height, heighth), colorset[i]))

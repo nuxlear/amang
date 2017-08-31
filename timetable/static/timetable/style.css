@@ -3,7 +3,7 @@
   -webkit-font-family: 'RixSGo M' sans-serif;
 }
 html{
-  font-size: 14px;
+  font-size: 16px;
 }
 div{
   display: block;
@@ -282,14 +282,14 @@ img.link{
     min-width: 62px;
     width: 12vw;
     min-height: 20px;
-    height: 1.2rem;
+    height: 1.23rem;
     font-size: 0.7rem;
   }
   div.cell{
     min-width: 49px;
     width: 10vw;
     min-height: 19px;
-    height: 1.2rem;
+    height: 1.23rem;
   }
   div.schedule{
     min-width: 49px;
@@ -298,7 +298,7 @@ img.link{
     height: 6vh;
   }
   div.schedule p{
-    font-size: 1rem;
+    font-size: 0.7rem;
   }
   div.form-cell{
     margin: 1rem;
@@ -333,7 +333,7 @@ img.link{
   }
   section.error-box{
     min-height: 30px;
-    height: 10vh;
+    height: 15vw;
   }
   section.error-box li{
     font-size: 1.6rem;
@@ -363,7 +363,7 @@ img.link{
     width:13vw;
   }
   table.form-table{
-    margin-left: 3vh !important;
+    margin-left: 2rem !important;
   }
   table.form-table th{
     font-size: 1.4rem;
@@ -374,7 +374,7 @@ img.link{
     margin: 1rem auto;
   }
   ul.menu-bar li{
-    margin: 0 5vw;
+    margin: 0 1rem;
     float: left;
   }
   ul.menu-bar li h3{
@@ -386,7 +386,7 @@ img.link{
   input.newbutton{
     min-width: 200px;
     width: 40vw;
-    height: 10vh;
+    height: 12vw;
     font-size: 1.4rem;
   }
   input.button{
@@ -395,5 +395,13 @@ img.link{
     min-height: 25px;
     height: 8vw;
     font-size: 1rem;
+  }
+  img.logo{
+    min-width: 100px;
+    width: 3rem;
+  }
+  img.link{
+    min-width: 38px;
+    width: 2rem;
   }
 }
